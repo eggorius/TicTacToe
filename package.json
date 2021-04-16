@@ -1,0 +1,16 @@
+{
+  "name": "TicTac",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "@yaireo/tagify": "4.0.5",
+    "node-sass": "5.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.0",
+    "parcel-bundler": "^1.12.4"
+  }
+}
