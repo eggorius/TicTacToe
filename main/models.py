@@ -1,21 +1,19 @@
 from django.db import models
-from django_tagify.fields import TagsInput
-import string
-import random
-
-
-def generate_code():
-    length = 6
-    while True:
-        code = ''.join(random.choices(string.ascii_uppercase, k=length))
-        if Game.objects.filter(code=code).count() == 0:
-            break
-    return code
+from django.shortcuts import reverse
+from django.utils import timezone
 
 
 class Game(models.Model):
-    code = models.CharField(max_length=6, default=generate_code, unique=True)
+    name = models.CharField(unique=True, null=False, max_length=20)
     current_players = models.IntegerField(default=1, null=False)
+    created_at = models.DateTimeField(default=timezone.now())
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('game', kwargs={'name': self.name})
+
 
 
 
