@@ -1,8 +1,15 @@
 var $input = $('input[name=tags-jquery]')
     .tagify({
             whitelist : [
-                {"id":1, "value":"doit"}
-            ]
+                "Hello", "How", "are", "you"
+            ],
+            maxItems: 20,
+            dropdown: {
+                maxItems: 20,           // <- mixumum allowed rendered suggestions
+                classname: "tags-look", // <- custom classname for this dropdown, so it could be targeted
+                enabled: 0,             // <- show suggestions on focus
+                closeOnSelect: false    // <- do not hide the suggestions dropdown once an item has been selected
+            }
         })
         .on('add', function(e, tagName){
             console.log('JQEURY EVENT: ', 'added', tagName)
