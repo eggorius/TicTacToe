@@ -10,9 +10,9 @@
   <link rel="stylesheet" href="{% static 'CSS/index.css' %}">
 </head>
 <body>
-<h2 class="pb-2 pt-4 border-bottom">{{ user }}</h2>
+<h2 class="pb-2 pt-4 border-bottom">Tic Tac Toe</h2>
 <form style="margin: 100px">
-  <input name='tags-jquery' value='try, adding, a tag'>
+  <input name='tags-jquery' value='try, adding, a tag' >
   <button id='tags-jquery--removeAllBtn' type='button'>Remove all tags</button>
 </form>
 <div class="album py-5 bg-light">
@@ -21,9 +21,11 @@
     {% for game in games %}
         <div class="col mt-md-5">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="8rem" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">
-              {{ game.name }}</text></svg>
-
+            <div class="card-footer">
+             {% for tag in game.tags.all %}
+               #{{ tag.title }};
+             {% endfor %}
+            </div>
             <div class="card-body">
               <p class="card-text">{{ game.name }}</p>
               <div class="d-flex justify-content-between align-items-center">
@@ -34,13 +36,12 @@
                     </button>
                   </form>
                 </div>
-                <small class="text-muted">Created at: {{ game.created_at }}</small>
+                <small class="text-muted ml-2 mr-1">Created at: {{ game.created_at }}</small>
                 {% if game.current_players == 1 %}
                   <small class="text" style="color: green">{{ game.current_players }}/2 players</small>
                 {% else%}
                   <small class="text" style="color: darkred">{{ game.current_players }}/2 players</small>
                 {% endif %}
-
               </div>
             </div>
           </div>
